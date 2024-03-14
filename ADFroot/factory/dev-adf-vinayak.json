@@ -1,0 +1,9 @@
+{
+	"name": "dev-adf-vinayak",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "24f2d439-b3b4-44f5-96e2-acd069e7ba90",
+		"tenantId": "a7bfff3c-ee35-4a9c-965b-c2ecd4e2024f"
+	}
+}
