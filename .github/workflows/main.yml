@@ -30,10 +30,17 @@ jobs:
         creds: ${{secrets.AZURE_CREDENTIALS}}
 
 
-    - name: Pre-deployment
-      shell: pwsh
-      run: pwsh -File ./dev-adf-vinayak/PrePostDeploymentScript.Ver2.ps1 -armTemplate "./dev-adf-vinayak/ARMTemplateForFactory.json" -ResourceGroupName vinayak-RG -DataFactoryName prod-adf-vinayak -predeployment:$true -deleteDeployment:$false
+    # - name: Pre-deployment
+    #   shell: pwsh
+    #   run: pwsh -File ./dev-adf-vinayak/PrePostDeploymentScript.Ver2.ps1 -armTemplate "./dev-adf-vinayak/ARMTemplateForFactory.json" -ResourceGroupName vinayak-RG -DataFactoryName prod-adf-vinayak -predeployment:$true -deleteDeployment:$false
 
+    - name: Azure PowerShell Action
+      uses: Azure/powershell@v1
+      with:
+        # Specify the Az PowerShell script here.
+        inlineScript: pwsh -File ./dev-adf-vinayak/PrePostDeploymentScript.ps1 -armTemplate "./dev-adf-vinayak/ARMTemplateForFactory.json" -ResourceGroupName vinayak-RG -DataFactoryName prod-adf-vinayak -predeployment:$true -deleteDeployment:$false
+        # Azure PS version to be used to execute the script, example: 1.8.0, 2.8.0, 3.4.0. To use the latest version, specify "latest".
+        azPSVersion: latest
     
     - name: Deploy Azure Resource Manager (ARM) Template
       uses: Azure/arm-deploy@v1.0.6
