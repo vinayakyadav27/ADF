@@ -32,7 +32,7 @@ jobs:
 
     - name: Pre-deployment
       shell: pwsh
-      run: pwsh -command ./dev-adf-vinayak/PrePostDeploymentScript.Ver2.ps1 -armTemplate "./dev-adf-vinayak/ARMTemplateForFactory.json" -ResourceGroupName vinayak-RG -DataFactoryName prod-adf-vinayak -predeployment $true -deleteDeployment $false
+      run: pwsh -command ./dev-adf-vinayak/PrePostDeploymentScript.Ver2.ps1 -armTemplate "./dev-adf-vinayak/ARMTemplateForFactory.json" -ResourceGroupName vinayak-RG -DataFactoryName prod-adf-vinayak -predeployment $True -deleteDeployment $False
 
     
     - name: Deploy Azure Resource Manager (ARM) Template
