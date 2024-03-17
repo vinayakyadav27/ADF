@@ -19,9 +19,9 @@ jobs:
       with:
           ref: adf_publish
 
-    # - name: Az Powershell Installation
-    #   run: Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
-    #   shell: pwsh
+    - name: Az Powershell Installation
+      run: Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
+      shell: pwsh
       
     - name: Azure Login
       uses: Azure/login@v1.4.3
