@@ -19,12 +19,19 @@ jobs:
       with:
           ref: adf_publish
 
+
     - name: Azure Login
       uses: Azure/login@v1.4.3
       with:
         # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
         creds: ${{secrets.AZURE_CREDENTIALS}}
-        
+
+
+    - name: Pre-deployment
+      shell: pwsh
+      run: pwsh -command ./dev-adf-vinayak/PrePostDeploymentScript.Ver2.ps1 -armTemplate "./dev-adf-vinayak/ARMTemplateForFactory.json" -ResourceGroupName vinayak-RG -DataFactoryName prod-adf-vinayak -predeployment $true -deleteDeployment $false
+
+    
     - name: Deploy Azure Resource Manager (ARM) Template
       uses: Azure/arm-deploy@v1.0.6
       with:
@@ -40,3 +47,9 @@ jobs:
         # Supply deployment parameter values. In this simple scenario, 
         # I am only passing the name of the target ADF to which this is being deployed
         parameters: factoryName=prod-adf-vinayak
+
+
+    - name: Pre-deployment
+      shell: pwsh
+      run: pwsh -command ./dev-adf-vinayak/PrePostDeploymentScript.Ver2.ps1 -armTemplate "./dev-adf-vinayak/ARMTemplateForFactory.json" -ResourceGroupName vinayak-RG -DataFactoryName prod-adf-vinayak predeployment $false -deleteDeployment $true
+    
